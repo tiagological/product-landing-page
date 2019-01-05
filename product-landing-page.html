@@ -19,6 +19,46 @@
       padding-top: 50px;
     }
 
+    .icon-bar {
+      width: 30px;
+      height: 2px;
+      background-color: #091b2b;
+      display: block;
+      transition: all 0.2s;
+      margin-top: 6px;
+    }
+
+    .navbar-toggler {
+      border: none;
+      background: transparent !important;
+    }
+
+    .navbar-toggler .top-bar {
+      transform: translate(3px) rotate(45deg);
+      transform-origin: 10% 10%;
+    }
+
+    .navbar-toggler .middle-bar {
+      opacity: 0;
+    }
+
+    .navbar-toggler .bottom-bar {
+      transform: translate(3px) rotate(-45deg);
+      transform-origin: 10% 90%;
+    }
+
+    .navbar-toggler.collapsed .top-bar {
+      transform: rotate(0);
+    }
+
+    .navbar-toggler.collapsed .middle-bar {
+      opacity: 1;
+    }
+
+    .navbar-toggler.collapsed .bottom-bar {
+      transform: rotate(0);
+    }
+
     #features,
     #how-it-works,
     #pricing {
@@ -91,25 +131,29 @@
   <!-- Navigation Bar -->
 
   <header id="header">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="nav-bar">
-      <img id="header-img" src="https://image.flaticon.com/icons/svg/1180/1180448.svg" alt="original-guitars-img">
-      <a class="navbar-brand" href="#">Original Guitars</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item text-center">
-            <a class="nav-link" href="#features">Features</a>
-          </li>
-          <li class="nav-item text-center">
-            <a class="nav-link" href="#how-it-works">How it works</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-center" href="#pricing">Pricing</a>
-          </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light" id="nav-bar">
+      <div class="container">
+        <img id="header-img" src="https://image.flaticon.com/icons/svg/1180/1180448.svg" alt="original-guitars-img">
+        <a class="navbar-brand" href="#">Original Guitars</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar top-bar"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-center">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link" href="#how-it-works">How it works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-center" href="#pricing">Pricing</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   </header>
@@ -230,6 +274,57 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script>
+    // make collapsed navbar hide if clicked
+
+    $(document).on("click", ".navbar-collapse", function (e) {
+      if ($(e.target).is("a")) {
+        $(this).collapse("hide");
+      }
+    });
+
+    // Select all links with hashes
+    $('a[href*="#"]')
+      // Remove links that don't actually link to anything
+      .not('[href="#"]')
+      .not('[href="#0"]')
+      .click(function (event) {
+        // On-page links
+        if (
+          location.pathname.replace(/^\//, "") ==
+          this.pathname.replace(/^\//, "") &&
+          location.hostname == this.hostname
+        ) {
+          // Figure out element to scroll to
+          var target = $(this.hash);
+          target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+          // Does a scroll target exist?
+          if (target.length) {
+            // Only prevent default if animation is actually going to happen
+            event.preventDefault();
+            $("html, body").animate({
+                scrollTop: target.offset().top
+              },
+              500,
+              function () {
+                // Callback after animation
+                // Must change focus!
+                var $target = $(target);
+                $target.focus();
+                if ($target.is(":focus")) {
+                  // Checking if the target was focused
+                  return false;
+                } else {
+                  $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                  $target.focus(); // Set focus again
+                }
+              }
+            );
+          }
+        }
+      });
+  </script>
 
 </body>
 
