@@ -1,0 +1,110 @@
+body {
+  padding-top: 50px;
+}
+
+.icon-bar {
+  width: 30px;
+  height: 2px;
+  background-color: #f7f7f7;
+  display: block;
+  transition: all 0.2s;
+  margin-top: 6px;
+}
+
+.navbar-toggler {
+  border: none;
+  background: transparent !important;
+}
+.navbar-toggler .top-bar {
+  transform: translate(3px) rotate(45deg);
+  transform-origin: 10% 10%;
+}
+.navbar-toggler .middle-bar {
+  opacity: 0;
+}
+.navbar-toggler .bottom-bar {
+  transform: translate(3px) rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
+}
+
+#features {
+  margin-top: -60px;
+  padding-top: 60px;
+}
+
+#how-it-works {
+  margin-top: -60px;
+  padding-top: 60px;
+}
+
+#pricing {
+  margin-top: -60px;
+  padding-top: 60px;
+}
+
+.navbar {
+  border-bottom: 1px solid #808080;
+}
+
+.navbar-brand {
+  position: relative;
+  left: 30px;
+}
+
+#header-img {
+  height: 40px;
+  width: auto;
+  margin-left: 30px;
+}
+
+@media (min-width: 992px) {
+  #header-img {
+    height: 40px;
+    width: auto;
+    margin-left: 40px;
+  }
+}
+#email {
+  width: 40%;
+}
+
+@media (max-width: 576px) {
+  .features-text {
+    text-align: center !important;
+  }
+}
+i {
+  color: #008000;
+}
+
+.card-text {
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.footer {
+  display: flex;
+  margin-top: 3em;
+  text-align: right;
+}
+
+#footer-container {
+  background-color: #f7f7f7;
+  height: 80px;
+}
+
+#footer-link {
+  color: black;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=output.css.map */
